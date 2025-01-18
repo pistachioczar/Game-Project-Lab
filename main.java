@@ -1,38 +1,59 @@
 import java.util.Random;
 
+
 public class main {
-    
+
     public static void main(String[] args) {
-        System.out.println("hello");
-    }
+        Player playerOne = new Player();
+        Player playerTwo = new Player();
+        Weapon weaponOne = new Weapon();
+        Weapon weaponTwo = new Weapon();
+        int damage;
 
-    public class Weapon{
-        String weaponType;
-        String weaponAction;
+        weaponOne.SetWeaponType("scythe");
+        weaponOne.SetWeaponAction("Slashes");
+        weaponTwo.SetWeaponType("axe");
+        weaponTwo.SetWeaponAction("hacks");
 
-        Weapon(){
-            weaponType="Rubber Duck";
-            weaponAction="squishes";
-        }
+        playerOne.SetName("Isildur");
+        playerOne.SetWeapon(weaponOne);
+        playerTwo.SetName("Adar");
+        playerTwo.SetWeapon(weaponTwo);
 
-        public static int Strike(int damage){
-            Random random = new Random();
-            damage = random.nextInt(7);
+
+        while (playerOne.GetHealth() >= 0 || playerTwo.GetHealth() >= 0) {
+            damage = DamageRoll();
+            System.out.println(playerOne.GetWeapon().Strike(damage));
+            System.out.println(playerTwo.Attack(damage) + "\n\n");
+
+            if (playerTwo.GetHealth() <= 0) {
+                break;
+            }
+
+            damage = DamageRoll();
+            System.out.println(playerTwo.GetWeapon().Strike(damage));
+            System.out.println(playerOne.Attack(damage) + "\n\n");
             
 
-            return damage;
         }
-    }
+        
+        if (playerOne.GetHealth() >= 0) {
+            System.out.println(playerOne.GetName() + " wins!!!");
+        } else {
+            System.out.println(playerTwo.GetName() + " wins !!!");
+        }
 
-    public class Player{
-        String playerName;
-        int health;
-        Weapon weapon;
-    
-        Player(){
-            playerName="unnamed";
-            health=100;
-            weapon = new Weapon();
-        }
     }
-}
+    
+    public static int DamageRoll() {
+        Random random = new Random();
+        return random.nextInt(30);
+    }
+    
+
+
+}       
+
+             
+
+             
