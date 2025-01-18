@@ -1,14 +1,13 @@
 import java.util.Random;
 
 
-public class main {
+public class Main {
 
     public static void main(String[] args) {
         Player playerOne = new Player();
         Player playerTwo = new Player();
         Weapon weaponOne = new Weapon();
         Weapon weaponTwo = new Weapon();
-        int damage;
 
         weaponOne.SetWeaponType("scythe");
         weaponOne.SetWeaponAction("Slashes");
@@ -20,8 +19,9 @@ public class main {
         playerTwo.SetName("Adar");
         playerTwo.SetWeapon(weaponTwo);
 
-
+        int damage;
         while (playerOne.GetHealth() >= 0 || playerTwo.GetHealth() >= 0) {
+
             damage = DamageRoll();
             System.out.println(playerOne.GetWeapon().Strike(damage));
             System.out.println(playerTwo.Attack(damage) + "\n\n");
@@ -34,7 +34,6 @@ public class main {
             System.out.println(playerTwo.GetWeapon().Strike(damage));
             System.out.println(playerOne.Attack(damage) + "\n\n");
             
-
         }
         
         if (playerOne.GetHealth() >= 0) {
@@ -53,7 +52,3 @@ public class main {
 
 
 }       
-
-             
-
-             
